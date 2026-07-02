@@ -23,6 +23,7 @@ type IslandFieldGroup = {
   category: string;
   name: string;
   rewardCategory: RewardCategory;
+  rewardText: string | null;
   times: string[];
   sortKey: number;
 };
@@ -77,7 +78,8 @@ function groupIslands(islands: AdventureIslandSchedule[]): IslandFieldGroup[] {
 
   for (const island of islands) {
     const category = island.category ?? DEFAULT_CATEGORY;
-    const key = `${category}|${island.name}|${island.rewardCategory}`;
+    const rewardText = island.rewardSummary;
+    const key = `${category}|${island.name}|${island.rewardCategory}|${rewardText ?? ""}`;
     const existing = groups.get(key);
 
     if (existing) {
@@ -90,6 +92,7 @@ function groupIslands(islands: AdventureIslandSchedule[]): IslandFieldGroup[] {
       category,
       name: island.name,
       rewardCategory: island.rewardCategory,
+      rewardText,
       times: [island.startTime],
       sortKey: island.sortKey
     });
@@ -140,35 +143,46 @@ function normalizeCategorySortIndex(index: number): number {
   return index === -1 ? Number.MAX_SAFE_INTEGER : index;
 }
 
-function getTimePeriodLabel(times: string[]): "오전" | "오후" | "종일" {
-  const hasMorning = times.some((time) => getStartHour(time) < 12);
-  const hasAfternoon = times.some((time) => getStartHour(time) >= 12);
+function getAdventureIslandTimePeriodLabel(times: string[]): "오전" | "오후" | "종일" {
+  const hours = times.map((time) => Number.parseInt(time.slice(0, 2), 10));
+  const hasEvening = hours.some((hour) => hour >= 18);
+  const hasDaytime = hours.some((hour) => hour < 18);
 
-  if (hasMorning && hasAfternoon) {
+  if (hasDaytime && hasEvening) {
     return "종일";
   }
-  if (hasMorning) {
-    return "오전";
+  if (hasEvening) {
+    return "오후";
   }
-  return "오후";
+  return "오전";
 }
 
 function formatIslandLine(group: IslandFieldGroup): string {
-  const timeLabel = getTimePeriodLabel(group.times);
+  const timeLabel = getAdventureIslandTimePeriodLabel(group.times);
+  const rewardLabel = formatRewardLabel(group);
 
   if (group.rewardCategory === "골드") {
-    return `\`\`\`fix\n[${timeLabel}] ${group.name} | 골드\n\`\`\``;
+    return `\`\`\`fix\n[${timeLabel}] ${group.name} | ${rewardLabel}\n\`\`\``;
   }
 
-  return `\`\`\`[${timeLabel}] ${group.name} | ${group.rewardCategory}\`\`\``;
+  return `\`\`\`[${timeLabel}] ${group.name} | ${rewardLabel}\`\`\``;
 }
 
 function compareTimeText(left: string, right: string): number {
   return left.localeCompare(right);
 }
 
-function getStartHour(time: string): number {
-  return Number.parseInt(time.slice(0, 2), 10);
+function formatRewardLabel(group: IslandFieldGroup): string {
+  if (!group.rewardText) {
+    return group.rewardCategory;
+  }
+
+  return `${group.rewardCategory} (${truncateRewardText(group.rewardText)})`;
+}
+
+function truncateRewardText(rewardText: string): string {
+  const limit = 90;
+  return rewardText.length > limit ? `${rewardText.slice(0, limit - 3)}...` : rewardText;
 }
 
 function truncateDescription(description: string): string {

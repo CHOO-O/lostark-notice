@@ -193,22 +193,29 @@ function extractRawStartTimes(item: CalendarRecord): unknown[] {
 
 function extractRewardItems(item: CalendarRecord): unknown[] {
   const rewardSource = getFirstExistingValue(item, REWARD_KEYS);
+  return flattenRewardItems(rewardSource);
+}
 
-  if (Array.isArray(rewardSource)) {
-    return rewardSource;
+function flattenRewardItems(value: unknown): unknown[] {
+  if (value == null) {
+    return [];
   }
 
-  if (isRecord(rewardSource)) {
+  if (Array.isArray(value)) {
+    return value.flatMap(flattenRewardItems);
+  }
+
+  if (isRecord(value)) {
     for (const key of REWARD_ITEM_ARRAY_KEYS) {
-      const value = rewardSource[key];
-      if (Array.isArray(value)) {
-        return value;
+      const nestedValue = value[key];
+      if (Array.isArray(nestedValue)) {
+        return flattenRewardItems(nestedValue);
       }
     }
-    return [rewardSource];
+    return [value];
   }
 
-  return rewardSource == null ? [] : [rewardSource];
+  return [value];
 }
 
 function splitRewardItems(rewardItems: unknown[], targetDateTimeSet: Set<string>): RewardSplit {
@@ -231,11 +238,6 @@ function splitRewardItems(rewardItems: unknown[], targetDateTimeSet: Set<string>
     }
 
     const rewardDateTimeSet = extractDateTimeKeySet(startTimesValue.value);
-    if (rewardDateTimeSet.size === 0) {
-      result.commonRewards.push(rewardItem);
-      continue;
-    }
-
     if (setsOverlap(targetDateTimeSet, rewardDateTimeSet)) {
       result.timedRewards.push(rewardItem);
     } else {
@@ -307,7 +309,7 @@ function setsOverlap(left: Set<string>, right: Set<string>): boolean {
 }
 
 function toDateTimeKey(parts: KstDateTimeParts): string {
-  return `${parts.date}T${parts.time}`;
+  return `${parts.date}T${parts.time}:00`;
 }
 
 function formatKstIsoOffset(now: Date): string {

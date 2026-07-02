@@ -21,7 +21,7 @@ export function classifyReward(rewardSource: unknown): RewardClassification {
 
   return {
     category: matched?.category ?? "기타",
-    summary: targetTexts.length > 0 ? targetTexts.slice(0, 5).join(", ") : null
+    summary: targetTexts.length > 0 ? targetTexts.join(", ") : null
   };
 }
 
