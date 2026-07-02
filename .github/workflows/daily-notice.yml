@@ -1,22 +1,29 @@
-name: Daily Adventure Island Notice
+name: daily-notice
 
 on:
   schedule:
-    # 10:00 KST is 01:00 UTC.
-    - cron: "0 1 * * *"
+    # 10:00 KST is 01:00 UTC. Wednesday is excluded and handled by workflow_run.
+    - cron: "0 1 * * 0,1,2,4,5,6"
   workflow_dispatch:
+  workflow_run:
+    workflows: ["get-weekly-calendar"]
+    types:
+      - completed
 
 permissions:
   contents: read
 
 jobs:
   send-notice:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,10 +37,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Send Discord notice
-        run: npm start
+      - name: Send daily Discord notice
+        run: npm run notify:daily
         env:
-          LOSTARK_API_KEY: ${{ secrets.LOSTARK_API_KEY }}
           DISCORD_WEBHOOK_TEST: ${{ secrets.DISCORD_WEBHOOK_TEST }}
           DISCORD_WEBHOOK_MAIN: ${{ secrets.DISCORD_WEBHOOK_MAIN }}
           DISCORD_WEBHOOK_EXTRA: ${{ secrets.DISCORD_WEBHOOK_EXTRA }}

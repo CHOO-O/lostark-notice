@@ -7,7 +7,7 @@ export type RewardClassification = {
 
 const CATEGORY_RULES: Array<{ category: RewardCategory; pattern: RegExp }> = [
   { category: "골드", pattern: /골드|gold/i },
-  { category: "카드 팩", pattern: /카드|card/i },
+  { category: "카드", pattern: /카드|card/i },
   { category: "주화", pattern: /대양|주화|해적|항해|coin/i },
   { category: "실링", pattern: /실링|shilling|silver/i }
 ];
@@ -20,7 +20,7 @@ export function classifyReward(rewardSource: unknown): RewardClassification {
   const matched = CATEGORY_RULES.find((rule) => rule.pattern.test(joined));
 
   return {
-    category: matched?.category ?? "주화",
+    category: matched?.category ?? "기타",
     summary: targetTexts.length > 0 ? targetTexts.slice(0, 5).join(", ") : null
   };
 }

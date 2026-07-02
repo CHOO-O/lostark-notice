@@ -34,10 +34,16 @@ export function toAdventureIslandSchedules(
   rawCalendarResponse: unknown,
   targetDate: string
 ): AdventureIslandSchedule[] {
+  return toAllAdventureIslandSchedules(rawCalendarResponse).filter(
+    (schedule) => schedule.startDate === targetDate
+  );
+}
+
+export function toAllAdventureIslandSchedules(rawCalendarResponse: unknown): AdventureIslandSchedule[] {
   const calendarItems = extractCalendarItems(rawCalendarResponse);
   const schedules = calendarItems
     .filter(isAdventureIsland)
-    .flatMap((item) => createSchedules(item, targetDate));
+    .flatMap((item) => createSchedules(item, null));
 
   return deduplicateSchedules(schedules).sort((left, right) => {
     if (left.sortKey !== right.sortKey) {
@@ -76,11 +82,11 @@ function isAdventureIsland(item: CalendarRecord): boolean {
   return /모험\s*섬|adventure\s*island/i.test(haystack);
 }
 
-function createSchedules(item: CalendarRecord, targetDate: string): AdventureIslandSchedule[] {
+function createSchedules(item: CalendarRecord, targetDate: string | null): AdventureIslandSchedule[] {
   const rewardSource = getFirstExistingValue(item, REWARD_KEYS);
   const allStartTimes = extractScheduleStartTimes(item);
   const targetStartTimes = allStartTimes
-    .filter((startTime) => startTime.parsed.date === targetDate)
+    .filter((startTime) => targetDate == null || startTime.parsed.date === targetDate)
     .map((startTime, targetIndex) => ({ ...startTime, targetIndex }));
 
   return targetStartTimes.flatMap((startTime) =>

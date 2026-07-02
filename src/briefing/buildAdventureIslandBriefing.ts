@@ -18,6 +18,19 @@ export function buildAdventureIslandBriefing(
   const targetDate = options.targetDate ?? getLostArkBusinessDate(now);
   const islands = toAdventureIslandSchedules(rawCalendarResponse, targetDate);
 
+  return buildAdventureIslandBriefingFromSchedules(islands, {
+    now,
+    targetDate
+  });
+}
+
+export function buildAdventureIslandBriefingFromSchedules(
+  schedules: AdventureIslandSchedule[],
+  options: BuildAdventureIslandBriefingOptions = {}
+): AdventureIslandBriefing {
+  const now = options.now ?? new Date();
+  const targetDate = options.targetDate ?? getLostArkBusinessDate(now);
+
   return {
     title: "오늘의 모험 섬 일정",
     targetDate,
@@ -26,7 +39,7 @@ export function buildAdventureIslandBriefing(
     resetTime: "06:00",
     updatedAt: formatKstDateTime(now),
     source: "Lost Ark Open API",
-    islands: sortSchedules(islands)
+    islands: sortSchedules(schedules)
   };
 }
 

@@ -18,16 +18,52 @@ export type AppConfig = {
   webhooks: WebhookConfig[];
 };
 
+export type CalendarSyncConfig = {
+  lostArkApiKey: string;
+  lostArkApiBaseUrl: string;
+  requestTimeoutMs: number;
+};
+
+export type DailyNoticeConfig = {
+  requestTimeoutMs: number;
+  webhooks: WebhookConfig[];
+};
+
 const DEFAULT_LOSTARK_API_BASE_URL = "https://developer-lostark.game.onstove.com";
 const DEFAULT_REQUEST_TIMEOUT_MS = 15_000;
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
+  const syncConfig = loadCalendarSyncConfig(env);
+  const dailyConfig = loadDailyNoticeConfig(env);
+
+  return {
+    ...syncConfig,
+    webhooks: dailyConfig.webhooks
+  };
+}
+
+export function loadCalendarSyncConfig(
+  env: NodeJS.ProcessEnv = process.env
+): CalendarSyncConfig {
   const lostArkApiKey = readRequiredSecret(env, "LOSTARK_API_KEY");
   const requestTimeoutMs = readPositiveInteger(
     env.REQUEST_TIMEOUT_MS,
     DEFAULT_REQUEST_TIMEOUT_MS
   );
 
+  return {
+    lostArkApiKey,
+    lostArkApiBaseUrl:
+      env.LOSTARK_API_BASE_URL?.trim() || DEFAULT_LOSTARK_API_BASE_URL,
+    requestTimeoutMs
+  };
+}
+
+export function loadDailyNoticeConfig(env: NodeJS.ProcessEnv = process.env): DailyNoticeConfig {
+  const requestTimeoutMs = readPositiveInteger(
+    env.REQUEST_TIMEOUT_MS,
+    DEFAULT_REQUEST_TIMEOUT_MS
+  );
   const webhooks = WEBHOOK_SECRET_NAMES.flatMap((name) => {
     const url = readOptionalSecret(env, name);
     return url ? [{ name, url }] : [];
@@ -40,9 +76,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   }
 
   return {
-    lostArkApiKey,
-    lostArkApiBaseUrl:
-      env.LOSTARK_API_BASE_URL?.trim() || DEFAULT_LOSTARK_API_BASE_URL,
     requestTimeoutMs,
     webhooks
   };
