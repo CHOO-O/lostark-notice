@@ -7,7 +7,11 @@ import { createDiscordPayload, type DiscordWebhookPayload } from "../discord/cre
 import { sendDiscordPayloadToWebhooks } from "../discord/webhookSender.js";
 import { getLostArkBusinessDate } from "../time.js";
 
-const enabledCategories: readonly NormalizedCalendarCategory[] = ["모험 섬"];
+const enabledCategories: readonly NormalizedCalendarCategory[] = [
+  "필드 보스",
+  "카오스게이트",
+  "모험 섬"
+];
 
 async function main(): Promise<void> {
   const config = loadDailyNoticeConfig();

@@ -20,17 +20,14 @@ type DiscordEmbed = {
 };
 
 type IslandFieldGroup = {
-  category: string;
   name: string;
   rewardCategory: RewardCategory;
-  rewardText: string | null;
   times: string[];
   sortKey: number;
 };
 
 const EMBED_DESCRIPTION_LIMIT = 4096;
 const DEFAULT_CATEGORY = "모험 섬";
-const CATEGORY_ORDER = ["모험 섬", "필드 보스", "카오스게이트"];
 
 export function createDiscordPayload(briefing: AdventureIslandBriefing): DiscordWebhookPayload {
   return {
@@ -53,20 +50,21 @@ function createTitle(briefing: AdventureIslandBriefing): string {
 }
 
 function createDescription(briefing: AdventureIslandBriefing): string {
-  if (briefing.islands.length === 0) {
-    return ["### 모험 섬", "조회된 모험 섬 일정이 없습니다."].join("\n");
-  }
-
   const categoryGroups = groupSchedulesByCategory(briefing.islands);
-  const lines = sortCategoryNames(Array.from(categoryGroups.keys())).flatMap((category) => {
-    const schedules = categoryGroups.get(category) ?? [];
-    return [`### ${category}`, ...groupIslands(schedules).map(formatIslandLine), ""];
-  });
+  const fieldBossSchedules = categoryGroups.get("필드 보스") ?? [];
+  const chaosGateSchedules = categoryGroups.get("카오스게이트") ?? [];
+  const adventureIslandSchedules = categoryGroups.get("모험 섬") ?? [];
 
-  if (lines[lines.length - 1] === "") {
-    lines.pop();
-  }
-  return lines.join("\n");
+  return [
+    "### 필드 보스",
+    formatAvailabilityBlock(fieldBossSchedules.length > 0),
+    "",
+    "### 카오스게이트",
+    formatAvailabilityBlock(chaosGateSchedules.length > 0),
+    "",
+    "### 모험 섬",
+    ...renderAdventureIslandLines(adventureIslandSchedules)
+  ].join("\n");
 }
 
 function toShortWeekday(weekday: string): string {
@@ -77,9 +75,7 @@ function groupIslands(islands: AdventureIslandSchedule[]): IslandFieldGroup[] {
   const groups = new Map<string, IslandFieldGroup>();
 
   for (const island of islands) {
-    const category = island.category ?? DEFAULT_CATEGORY;
-    const rewardText = island.rewardSummary;
-    const key = `${category}|${island.name}|${island.rewardCategory}|${rewardText ?? ""}`;
+    const key = `${island.name}|${island.rewardCategory}`;
     const existing = groups.get(key);
 
     if (existing) {
@@ -89,10 +85,8 @@ function groupIslands(islands: AdventureIslandSchedule[]): IslandFieldGroup[] {
     }
 
     groups.set(key, {
-      category,
       name: island.name,
       rewardCategory: island.rewardCategory,
-      rewardText,
       times: [island.startTime],
       sortKey: island.sortKey
     });
@@ -126,21 +120,16 @@ function groupSchedulesByCategory(
   return groups;
 }
 
-function sortCategoryNames(categories: string[]): string[] {
-  return categories.sort((left, right) => {
-    const leftIndex = CATEGORY_ORDER.indexOf(left);
-    const rightIndex = CATEGORY_ORDER.indexOf(right);
-
-    if (leftIndex !== -1 || rightIndex !== -1) {
-      return normalizeCategorySortIndex(leftIndex) - normalizeCategorySortIndex(rightIndex);
-    }
-
-    return left.localeCompare(right, "ko-KR");
-  });
+function formatAvailabilityBlock(hasItems: boolean): string {
+  return hasItems ? "```yaml\nO\n```" : "```prolog\nX\n```";
 }
 
-function normalizeCategorySortIndex(index: number): number {
-  return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+function renderAdventureIslandLines(schedules: AdventureIslandSchedule[]): string[] {
+  if (schedules.length === 0) {
+    return ["조회된 모험 섬 일정이 없습니다."];
+  }
+
+  return groupIslands(schedules).map(formatIslandLine);
 }
 
 function getAdventureIslandTimePeriodLabel(times: string[]): "오전" | "오후" | "종일" {
@@ -159,30 +148,28 @@ function getAdventureIslandTimePeriodLabel(times: string[]): "오전" | "오후"
 
 function formatIslandLine(group: IslandFieldGroup): string {
   const timeLabel = getAdventureIslandTimePeriodLabel(group.times);
-  const rewardLabel = formatRewardLabel(group);
+  const rewardLabel = toDisplayRewardLabel(group.rewardCategory);
 
-  if (group.rewardCategory === "골드") {
-    return `\`\`\`fix\n[${timeLabel}] ${group.name} | ${rewardLabel}\n\`\`\``;
-  }
-
-  return `\`\`\`[${timeLabel}] ${group.name} | ${rewardLabel}\`\`\``;
+  return `\`\`\`text\n[${timeLabel}] ${group.name} | ${rewardLabel}\n\`\`\``;
 }
 
 function compareTimeText(left: string, right: string): number {
   return left.localeCompare(right);
 }
 
-function formatRewardLabel(group: IslandFieldGroup): string {
-  if (!group.rewardText) {
-    return group.rewardCategory;
+function toDisplayRewardLabel(rewardCategory: RewardCategory): string {
+  switch (rewardCategory) {
+    case "카드":
+      return "카드 팩";
+    case "주화":
+      return "주화";
+    case "실링":
+      return "실링";
+    case "골드":
+      return "골드";
+    default:
+      return "기타";
   }
-
-  return `${group.rewardCategory} (${truncateRewardText(group.rewardText)})`;
-}
-
-function truncateRewardText(rewardText: string): string {
-  const limit = 90;
-  return rewardText.length > limit ? `${rewardText.slice(0, limit - 3)}...` : rewardText;
 }
 
 function truncateDescription(description: string): string {
