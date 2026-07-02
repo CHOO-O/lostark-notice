@@ -1,6 +1,6 @@
-export const REWARD_CATEGORIES = ["실링", "카드", "주화", "골드", "기타"] as const;
+export const REWARD_NAMES = ["대양의 주화", "실링", "골드", "카드 팩"] as const;
 
-export type RewardCategory = (typeof REWARD_CATEGORIES)[number];
+export type RewardCategory = (typeof REWARD_NAMES)[number];
 
 export type AdventureIslandSchedule = {
   name: string;

@@ -1,8 +1,6 @@
-import {
-  REWARD_CATEGORIES,
-  type AdventureIslandBriefing,
-  type AdventureIslandSchedule,
-  type RewardCategory
+import type {
+  AdventureIslandBriefing,
+  AdventureIslandSchedule
 } from "../briefing/briefingTypes.js";
 
 export type DiscordWebhookPayload = {
@@ -28,9 +26,9 @@ export function createDiscordPayload(briefing: AdventureIslandBriefing): Discord
     username: "Lostark Notice",
     embeds: [
       {
-        title: briefing.title,
+        title: createTitle(briefing),
         description: truncateEmbedDescription(createDescription(briefing)),
-        color: 0x5865f2,
+        color: 0xf1c40f,
         timestamp: new Date().toISOString(),
         footer: {
           text: "Lost Ark Open API"
@@ -41,60 +39,72 @@ export function createDiscordPayload(briefing: AdventureIslandBriefing): Discord
 }
 
 function createDescription(briefing: AdventureIslandBriefing): string {
-  const lines = [
-    `${briefing.targetDate} ${briefing.weekday} / ${briefing.timezone} 기준`,
-    `로스트아크 일일 초기화 기준: ${briefing.resetTime} KST`,
-    ""
-  ];
+  const lines = ["### 모험 섬"];
 
   if (briefing.islands.length === 0) {
-    lines.push("오늘 조회된 모험 섬 일정이 없습니다.");
+    lines.push("조회된 모험 섬 일정이 없습니다.");
   } else {
-    lines.push(...createRewardSections(briefing.islands));
+    lines.push(...createIslandLines(briefing));
   }
-
-  lines.push(
-    "",
-    `마지막 갱신: ${briefing.updatedAt} KST`,
-    `데이터 출처: ${briefing.source}`
-  );
 
   return lines.join("\n");
 }
 
-function createRewardSections(islands: AdventureIslandSchedule[]): string[] {
-  const sections: string[] = [];
+function createTitle(briefing: AdventureIslandBriefing): string {
+  return `${briefing.targetDate} (${toShortWeekday(briefing.weekday)}) 일정`;
+}
 
-  for (const category of REWARD_CATEGORIES) {
-    const categoryItems = islands.filter((island) => island.rewardCategory === category);
-    if (categoryItems.length === 0) {
-      continue;
-    }
-
-    if (sections.length > 0) {
-      sections.push("");
-    }
-
-    sections.push(`[${category}]`);
-    sections.push(...categoryItems.map(formatIslandLine));
+function createIslandLines(briefing: AdventureIslandBriefing): string[] {
+  if (!isWeekend(briefing.targetDate)) {
+    return briefing.islands.map((island) => formatIslandLine(island, island.startTime));
   }
 
-  return sections;
+  const morning = briefing.islands.filter((island) => getStartHour(island) < 12);
+  const afternoon = briefing.islands.filter((island) => getStartHour(island) >= 12);
+  const lines: string[] = [];
+
+  lines.push(...morning.map((island) => formatIslandLine(island, "오전")));
+
+  if (morning.length > 0 && afternoon.length > 0) {
+    lines.push("");
+  }
+
+  lines.push(...afternoon.map((island) => formatIslandLine(island, "오후")));
+
+  return lines;
 }
 
-function formatIslandLine(island: AdventureIslandSchedule): string {
-  const details = createDetails(island);
-  return details ? `- ${island.startTime} ${island.name} (${details})` : `- ${island.startTime} ${island.name}`;
+function formatIslandLine(island: AdventureIslandSchedule, timeLabel: string): string {
+  if (island.rewardCategory === "골드") {
+    return `\`\`\`fix\n[${timeLabel}] ***${island.name}*** | ***골드***\n\`\`\``;
+  }
+
+  return `\`\`\`[${timeLabel}] **${island.name}** | ${island.rewardCategory}\`\`\``;
 }
 
-function createDetails(island: AdventureIslandSchedule): string {
-  const parts = [
-    island.rewardSummary,
-    island.location ? `위치: ${island.location}` : null,
-    island.minItemLevel != null ? `입장 레벨: ${island.minItemLevel}` : null
-  ].filter((part): part is string => Boolean(part));
+function toShortWeekday(weekday: string): string {
+  return weekday.replace("요일", "");
+}
 
-  return parts.join(" / ");
+function isWeekend(date: string): boolean {
+  const day = getDayOfWeek(date);
+  return day === 0 || day === 6;
+}
+
+function getDayOfWeek(date: string): number {
+  const match = date.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) {
+    return -1;
+  }
+
+  const year = Number.parseInt(match[1]!, 10);
+  const month = Number.parseInt(match[2]!, 10);
+  const day = Number.parseInt(match[3]!, 10);
+  return new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+}
+
+function getStartHour(island: AdventureIslandSchedule): number {
+  return Number.parseInt(island.startTime.slice(0, 2), 10);
 }
 
 function truncateEmbedDescription(description: string): string {
