@@ -3,6 +3,15 @@ import { classifyReward } from "../briefing/rewardClassifier.js";
 import { type KstDateTimeParts, parseCalendarDateTime } from "../time.js";
 
 type CalendarRecord = Record<string, unknown>;
+type ScheduleStartTime = {
+  raw: unknown;
+  index: number;
+  parsed: KstDateTimeParts;
+};
+
+type TargetScheduleStartTime = ScheduleStartTime & {
+  targetIndex: number;
+};
 
 const ITEM_ARRAY_KEYS = ["data", "Data", "items", "Items", "result", "Result", "results", "Results"];
 const CATEGORY_KEYS = ["CategoryName", "categoryName", "Category", "category"];
@@ -69,32 +78,37 @@ function isAdventureIsland(item: CalendarRecord): boolean {
 
 function createSchedules(item: CalendarRecord, targetDate: string): AdventureIslandSchedule[] {
   const rewardSource = getFirstExistingValue(item, REWARD_KEYS);
+  const allStartTimes = extractScheduleStartTimes(item);
+  const targetStartTimes = allStartTimes
+    .filter((startTime) => startTime.parsed.date === targetDate)
+    .map((startTime, targetIndex) => ({ ...startTime, targetIndex }));
 
-  return extractRawStartTimes(item).flatMap((rawStartTime) =>
-    createScheduleFromTime(item, targetDate, rawStartTime, rewardSource ?? item)
+  return targetStartTimes.flatMap((startTime) =>
+    createScheduleFromTime(item, startTime, rewardSource ?? item, allStartTimes, targetStartTimes)
   );
 }
 
 function createScheduleFromTime(
   item: CalendarRecord,
-  targetDate: string,
-  rawStartTime: unknown,
-  rewardSource: unknown
+  startTime: TargetScheduleStartTime,
+  rewardSource: unknown,
+  allStartTimes: ScheduleStartTime[],
+  targetStartTimes: TargetScheduleStartTime[]
 ): AdventureIslandSchedule[] {
-  const parsedStartTime = parseCalendarDateTime(rawStartTime);
-  if (!parsedStartTime || parsedStartTime.date !== targetDate) {
-    return [];
-  }
-
-  const datedRewardSource = selectRewardSourceForStartTime(rewardSource, parsedStartTime);
+  const datedRewardSource = selectRewardSourceForStartTime(
+    rewardSource,
+    startTime,
+    allStartTimes,
+    targetStartTimes
+  );
   const reward = classifyReward(datedRewardSource === undefined ? rewardSource : datedRewardSource);
 
   return [
     {
       name: getFirstString(item, NAME_KEYS) ?? "이름 미상",
-      startDate: parsedStartTime.date,
-      startTime: parsedStartTime.time,
-      sortKey: parsedStartTime.sortKey,
+      startDate: startTime.parsed.date,
+      startTime: startTime.parsed.time,
+      sortKey: startTime.parsed.sortKey,
       rewardCategory: reward.category,
       rewardSummary: reward.summary,
       location: getFirstString(item, ["Location", "location"]) ?? null,
@@ -102,6 +116,13 @@ function createScheduleFromTime(
       minItemLevel: getNumber(item, ["MinItemLevel", "minItemLevel"]) ?? null
     }
   ];
+}
+
+function extractScheduleStartTimes(item: CalendarRecord): ScheduleStartTime[] {
+  return extractRawStartTimes(item).flatMap((raw, index) => {
+    const parsed = parseCalendarDateTime(raw);
+    return parsed ? [{ raw, index, parsed }] : [];
+  });
 }
 
 function extractRawStartTimes(item: CalendarRecord): unknown[] {
@@ -114,31 +135,38 @@ function extractRawStartTimes(item: CalendarRecord): unknown[] {
 
 function selectRewardSourceForStartTime(
   rewardSource: unknown,
-  parsedStartTime: KstDateTimeParts
+  startTime: TargetScheduleStartTime,
+  allStartTimes: ScheduleStartTime[],
+  targetStartTimes: TargetScheduleStartTime[]
 ): unknown[] | undefined {
-  const rewardItems = Array.isArray(rewardSource) ? rewardSource.filter(isRecord) : [];
-  if (rewardItems.length === 0) {
+  const rewardEntries = Array.isArray(rewardSource) ? rewardSource : [];
+  if (rewardEntries.length === 0) {
     return undefined;
   }
 
-  const rewardsWithTimes = rewardItems.map((rewardItem) => ({
-    rewardItem,
-    dateTimes: extractDateTimesDeep(rewardItem)
+  const rewardsWithTimes = rewardEntries.map((rewardEntry) => ({
+    rewardEntry,
+    dateTimes: extractDateTimesDeep(rewardEntry)
   }));
   const hasAnyDateTime = rewardsWithTimes.some(({ dateTimes }) => dateTimes.length > 0);
 
   if (!hasAnyDateTime) {
-    return undefined;
+    return selectRewardSourceByScheduleIndex(
+      rewardEntries,
+      startTime,
+      allStartTimes,
+      targetStartTimes
+    );
   }
 
   const exactMatches = rewardsWithTimes
     .filter(({ dateTimes }) =>
       dateTimes.some(
         (dateTime) =>
-          dateTime.date === parsedStartTime.date && dateTime.time === parsedStartTime.time
+          dateTime.date === startTime.parsed.date && dateTime.time === startTime.parsed.time
       )
     )
-    .map(({ rewardItem }) => rewardItem);
+    .map(({ rewardEntry }) => rewardEntry);
 
   if (exactMatches.length > 0) {
     return exactMatches;
@@ -146,11 +174,32 @@ function selectRewardSourceForStartTime(
 
   const dateMatches = rewardsWithTimes
     .filter(({ dateTimes }) =>
-      dateTimes.some((dateTime) => dateTime.date === parsedStartTime.date)
+      dateTimes.some((dateTime) => dateTime.date === startTime.parsed.date)
     )
-    .map(({ rewardItem }) => rewardItem);
+    .map(({ rewardEntry }) => rewardEntry);
 
   return dateMatches;
+}
+
+function selectRewardSourceByScheduleIndex(
+  rewardEntries: unknown[],
+  startTime: TargetScheduleStartTime,
+  allStartTimes: ScheduleStartTime[],
+  targetStartTimes: TargetScheduleStartTime[]
+): unknown[] | undefined {
+  if (rewardEntries.length === allStartTimes.length) {
+    return toRewardSourceArray(rewardEntries[startTime.index]);
+  }
+
+  if (rewardEntries.length === targetStartTimes.length) {
+    return toRewardSourceArray(rewardEntries[startTime.targetIndex]);
+  }
+
+  return undefined;
+}
+
+function toRewardSourceArray(value: unknown): unknown[] {
+  return Array.isArray(value) ? value : [value];
 }
 
 function extractDateTimesDeep(value: unknown, depth = 0): KstDateTimeParts[] {

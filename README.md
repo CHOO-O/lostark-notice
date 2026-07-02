@@ -86,7 +86,7 @@ API 응답의 보상 텍스트를 기준으로 다음 카테고리 중 하나로
 - `주화`: `대양`, `주화`, `해적`, `항해`, `coin`
 - `실링`: `실링`, `shilling`, `silver`
 
-분류 우선순위는 `골드 → 카드 팩 → 주화 → 실링`입니다. `RewardItems`에 날짜/시간 정보가 있으면 실행 기준일과 일치하는 보상만 먼저 사용하고, 그 안의 `Name`, `rewardName`, `normalizedRewardName` 계열 값을 우선 판정합니다.
+분류 우선순위는 `골드 → 카드 팩 → 주화 → 실링`입니다. `RewardItems`에 날짜/시간 정보가 있으면 실행 기준일과 일치하는 보상만 먼저 사용합니다. 날짜 정보가 없고 `StartTimes`와 `RewardItems` 길이가 맞으면 같은 index의 보상만 사용하며, 그 안의 `Name`, `rewardName`, `normalizedRewardName` 계열 값을 우선 판정합니다.
 
 보상 판별 로직은 `src/briefing/rewardClassifier.ts`에 분리되어 있어 실제 API 응답에 맞춰 수정할 수 있습니다.
 
