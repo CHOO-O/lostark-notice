@@ -98,6 +98,8 @@ GitHub Repository에서 `Settings → Secrets and variables → Actions → New 
 
 Webhook Secret은 값이 있는 항목만 `DISCORD_WEBHOOK_TEST → DISCORD_WEBHOOK_MAIN → DISCORD_WEBHOOK_CAFE → DISCORD_WEBHOOK_EXTRA` 순서로 전송합니다.
 
+Webhook 표시 이름은 Discord 채널의 Webhook 설정에서 관리합니다. 코드는 payload `username`을 보내지 않으므로 서버별 Webhook 이름이 그대로 표시됩니다. 모든 서버에서 이름을 강제로 통일하고 싶을 때만 payload `username`을 사용합니다.
+
 ## 저장 파일
 
 `get-weekly-calendar`는 실행 시 `data/calendar`의 기존 JSON 파일을 정리한 뒤 다음 두 파일만 생성하거나 갱신합니다.

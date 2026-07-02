@@ -27,7 +27,6 @@ const DEFAULT_CATEGORY = "모험 섬";
 
 export function createDiscordPayload(briefing: AdventureIslandBriefing): DiscordWebhookPayload {
   return {
-    username: "Lostark Notice",
     embeds: [
       {
         title: createTitle(briefing),

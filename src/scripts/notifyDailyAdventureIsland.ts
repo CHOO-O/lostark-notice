@@ -53,7 +53,6 @@ async function sendFailureNotice(
   message: string
 ): Promise<void> {
   const payload: DiscordWebhookPayload = {
-    username: "Lostark Notice",
     content: message
   };
 
