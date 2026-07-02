@@ -8,28 +8,30 @@ export type RewardClassification = {
 const CATEGORY_RULES: Array<{ category: RewardCategory; pattern: RegExp }> = [
   { category: "골드", pattern: /골드|gold/i },
   { category: "카드 팩", pattern: /카드|card/i },
-  { category: "대양의 주화", pattern: /대양|주화|해적|항해|coin/i },
+  { category: "주화", pattern: /대양|주화|해적|항해|coin/i },
   { category: "실링", pattern: /실링|shilling|silver/i }
 ];
 
 export function classifyReward(rewardSource: unknown): RewardClassification {
-  const texts = collectRewardTexts(rewardSource);
-  const joined = texts.join(" ");
+  const namedTexts = collectRewardTexts(rewardSource, true);
+  const fallbackTexts = collectRewardTexts(rewardSource, false);
+  const targetTexts = namedTexts.length > 0 ? namedTexts : fallbackTexts;
+  const joined = normalizeRewardText(targetTexts.join(" "));
   const matched = CATEGORY_RULES.find((rule) => rule.pattern.test(joined));
 
   return {
-    category: matched?.category ?? "대양의 주화",
-    summary: texts.length > 0 ? texts.slice(0, 5).join(", ") : null
+    category: matched?.category ?? "주화",
+    summary: targetTexts.length > 0 ? targetTexts.slice(0, 5).join(", ") : null
   };
 }
 
-function collectRewardTexts(value: unknown): string[] {
+function collectRewardTexts(value: unknown, nameOnly: boolean): string[] {
   const result: string[] = [];
-  collectText(value, result, 0);
+  collectText(value, result, 0, nameOnly);
   return Array.from(new Set(result.map((text) => text.trim()).filter(Boolean)));
 }
 
-function collectText(value: unknown, result: string[], depth: number): void {
+function collectText(value: unknown, result: string[], depth: number, nameOnly: boolean): void {
   if (depth > 4 || value == null) {
     return;
   }
@@ -43,7 +45,7 @@ function collectText(value: unknown, result: string[], depth: number): void {
 
   if (Array.isArray(value)) {
     for (const item of value) {
-      collectText(item, result, depth + 1);
+      collectText(item, result, depth + 1, nameOnly);
     }
     return;
   }
@@ -53,16 +55,20 @@ function collectText(value: unknown, result: string[], depth: number): void {
   }
 
   for (const [key, nestedValue] of Object.entries(value)) {
-    if (isRewardTextKey(key)) {
-      collectText(nestedValue, result, depth + 1);
+    if (isRewardTextKey(key, nameOnly)) {
+      collectText(nestedValue, result, depth + 1, nameOnly);
     } else if (Array.isArray(nestedValue) && isRewardArrayKey(key)) {
-      collectText(nestedValue, result, depth + 1);
+      collectText(nestedValue, result, depth + 1, nameOnly);
     }
   }
 }
 
-function isRewardTextKey(key: string): boolean {
-  return /^(name|itemname|rewardname|grade|type|category|contentsname)$/i.test(key);
+function isRewardTextKey(key: string, nameOnly: boolean): boolean {
+  if (nameOnly) {
+    return /^(name|itemname|rewardname|reward_name|normalizedrewardname|normalized_reward_name)$/i.test(key);
+  }
+
+  return /^(name|itemname|rewardname|reward_name|normalizedrewardname|normalized_reward_name|grade|type|category|contentsname)$/i.test(key);
 }
 
 function isRewardArrayKey(key: string): boolean {
@@ -71,6 +77,10 @@ function isRewardArrayKey(key: string): boolean {
 
 function isProbablyUrl(value: string): boolean {
   return /^https?:\/\//i.test(value);
+}
+
+function normalizeRewardText(value: string): string {
+  return value.normalize("NFKC").replace(/\s+/g, " ").trim();
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

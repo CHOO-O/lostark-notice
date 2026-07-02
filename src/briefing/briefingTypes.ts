@@ -1,4 +1,4 @@
-export const REWARD_NAMES = ["대양의 주화", "실링", "골드", "카드 팩"] as const;
+export const REWARD_NAMES = ["골드", "카드 팩", "주화", "실링"] as const;
 
 export type RewardCategory = (typeof REWARD_NAMES)[number];
 

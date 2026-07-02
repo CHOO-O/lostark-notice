@@ -12,18 +12,11 @@ export type DiscordWebhookPayload = {
 
 type DiscordEmbed = {
   title: string;
-  description?: string;
+  description: string;
   timestamp: string;
   footer: {
     text: string;
   };
-  fields?: DiscordEmbedField[];
-};
-
-type DiscordEmbedField = {
-  name: string;
-  value: string;
-  inline: boolean;
 };
 
 type IslandFieldGroup = {
@@ -33,25 +26,19 @@ type IslandFieldGroup = {
   sortKey: number;
 };
 
-const SECTION_FIELD_NAME = "모험 섬";
-const EMPTY_FIELD_NAME = "\u200B";
-const FIELD_VALUE_LIMIT = 1024;
-const MAX_EMBED_FIELDS = 25;
+const EMBED_DESCRIPTION_LIMIT = 4096;
 
 export function createDiscordPayload(briefing: AdventureIslandBriefing): DiscordWebhookPayload {
-  const fields = createFields(briefing);
-
   return {
     username: "Lostark Notice",
     embeds: [
       {
         title: createTitle(briefing),
-        description: fields.length > 0 ? undefined : "조회된 모험 섬 일정이 없습니다.",
+        description: truncateDescription(createDescription(briefing)),
         timestamp: new Date().toISOString(),
         footer: {
           text: "Lost Ark Open API"
-        },
-        fields
+        }
       }
     ]
   };
@@ -61,14 +48,16 @@ function createTitle(briefing: AdventureIslandBriefing): string {
   return `${briefing.targetDate} (${toShortWeekday(briefing.weekday)}) 일정`;
 }
 
-function createFields(briefing: AdventureIslandBriefing): DiscordEmbedField[] {
-  return groupIslands(briefing.islands)
-    .slice(0, MAX_EMBED_FIELDS)
-    .map((group, index) => ({
-      name: index === 0 ? SECTION_FIELD_NAME : EMPTY_FIELD_NAME,
-      value: truncateFieldText(formatIslandFieldValue(group), FIELD_VALUE_LIMIT),
-      inline: false
-    }));
+function createDescription(briefing: AdventureIslandBriefing): string {
+  const lines = ["### 모험 섬"];
+
+  if (briefing.islands.length === 0) {
+    lines.push("조회된 모험 섬 일정이 없습니다.");
+  } else {
+    lines.push(...groupIslands(briefing.islands).map(formatIslandLine));
+  }
+
+  return lines.join("\n");
 }
 
 function toShortWeekday(weekday: string): string {
@@ -122,15 +111,14 @@ function getTimePeriodLabel(times: string[]): "오전" | "오후" | "종일" {
   return "오후";
 }
 
-function formatIslandFieldValue(group: IslandFieldGroup): string {
-  return [
-    `[${getTimePeriodLabel(group.times)}] ${group.name} | ${formatReward(group.rewardCategory)}`,
-    group.times.join(", ")
-  ].join("\n");
-}
+function formatIslandLine(group: IslandFieldGroup): string {
+  const timeLabel = getTimePeriodLabel(group.times);
 
-function formatReward(rewardCategory: RewardCategory): string {
-  return rewardCategory === "골드" ? "**골드**" : rewardCategory;
+  if (group.rewardCategory === "골드") {
+    return `\`\`\`fix\n[${timeLabel}] ***${group.name}*** | ***골드***\n\`\`\``;
+  }
+
+  return `\`\`\`[${timeLabel}] ${group.name} | ${group.rewardCategory}\`\`\``;
 }
 
 function compareTimeText(left: string, right: string): number {
@@ -141,10 +129,10 @@ function getStartHour(time: string): number {
   return Number.parseInt(time.slice(0, 2), 10);
 }
 
-function truncateFieldText(text: string, limit: number): string {
-  if (text.length <= limit) {
-    return text;
+function truncateDescription(description: string): string {
+  if (description.length <= EMBED_DESCRIPTION_LIMIT) {
+    return description;
   }
 
-  return `${text.slice(0, limit - 1)}…`;
+  return `${description.slice(0, EMBED_DESCRIPTION_LIMIT - 20)}\n...내용 생략`;
 }
