@@ -13,10 +13,6 @@ export type DiscordWebhookPayload = {
 type DiscordEmbed = {
   title: string;
   description: string;
-  timestamp: string;
-  footer: {
-    text: string;
-  };
 };
 
 type IslandFieldGroup = {
@@ -35,18 +31,14 @@ export function createDiscordPayload(briefing: AdventureIslandBriefing): Discord
     embeds: [
       {
         title: createTitle(briefing),
-        description: truncateDescription(createDescription(briefing)),
-        timestamp: new Date().toISOString(),
-        footer: {
-          text: "Lost Ark Open API"
-        }
+        description: truncateDescription(createDescription(briefing))
       }
     ]
   };
 }
 
 function createTitle(briefing: AdventureIslandBriefing): string {
-  return `${briefing.targetDate} (${toShortWeekday(briefing.weekday)}) 일정`;
+  return `${briefing.targetDate}(${toShortWeekday(briefing.weekday)}) 일정`;
 }
 
 function createDescription(briefing: AdventureIslandBriefing): string {
@@ -58,10 +50,8 @@ function createDescription(briefing: AdventureIslandBriefing): string {
   return [
     "### 필드 보스",
     formatAvailabilityBlock(fieldBossSchedules.length > 0),
-    "",
     "### 카오스게이트",
     formatAvailabilityBlock(chaosGateSchedules.length > 0),
-    "",
     "### 모험 섬",
     ...renderAdventureIslandLines(adventureIslandSchedules)
   ].join("\n");
@@ -149,8 +139,9 @@ function getAdventureIslandTimePeriodLabel(times: string[]): "오전" | "오후"
 function formatIslandLine(group: IslandFieldGroup): string {
   const timeLabel = getAdventureIslandTimePeriodLabel(group.times);
   const rewardLabel = toDisplayRewardLabel(group.rewardCategory);
+  const codeBlockLanguage = rewardLabel === "골드" ? "fix" : "text";
 
-  return `\`\`\`text\n[${timeLabel}] ${group.name} | ${rewardLabel}\n\`\`\``;
+  return `\`\`\`${codeBlockLanguage}\n[${timeLabel}] ${group.name} | ${rewardLabel}\n\`\`\``;
 }
 
 function compareTimeText(left: string, right: string): number {
