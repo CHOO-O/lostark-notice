@@ -42,4 +42,5 @@ jobs:
         env:
           DISCORD_WEBHOOK_TEST: ${{ secrets.DISCORD_WEBHOOK_TEST }}
           DISCORD_WEBHOOK_MAIN: ${{ secrets.DISCORD_WEBHOOK_MAIN }}
+          DISCORD_WEBHOOK_CAFE: ${{ secrets.DISCORD_WEBHOOK_CAFE }}
           DISCORD_WEBHOOK_EXTRA: ${{ secrets.DISCORD_WEBHOOK_EXTRA }}

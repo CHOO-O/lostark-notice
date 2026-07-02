@@ -93,9 +93,10 @@ GitHub Repository에서 `Settings → Secrets and variables → Actions → New 
 선택:
 
 - `DISCORD_WEBHOOK_MAIN`: 운영용 Discord Webhook URL
+- `DISCORD_WEBHOOK_CAFE`: 카페 채널 Discord Webhook URL
 - `DISCORD_WEBHOOK_EXTRA`: 추가 채널 Discord Webhook URL
 
-Webhook Secret은 값이 있는 항목만 `DISCORD_WEBHOOK_TEST → DISCORD_WEBHOOK_MAIN → DISCORD_WEBHOOK_EXTRA` 순서로 전송합니다.
+Webhook Secret은 값이 있는 항목만 `DISCORD_WEBHOOK_TEST → DISCORD_WEBHOOK_MAIN → DISCORD_WEBHOOK_CAFE → DISCORD_WEBHOOK_EXTRA` 순서로 전송합니다.
 
 ## 저장 파일
 
