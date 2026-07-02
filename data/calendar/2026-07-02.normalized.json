@@ -1,0 +1,1358 @@
+{
+  "schemaVersion": 1,
+  "syncedAt": "2026-07-02T17:28:00+09:00",
+  "source": "Lost Ark Open API /gamecontents/calendar",
+  "resetHourKst": 6,
+  "items": [
+    {
+      "date": "2026-07-01",
+      "category": "모험 섬",
+      "name": "몬테섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "실링",
+      "rewardText": "몬테 섬의 마음, 몬테섬 참가상, 정령의 선물, 실링",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-01",
+            "startTime": "11:00",
+            "rewardSummary": "몬테 섬의 마음, 몬테섬 참가상, 정령의 선물, 실링",
+            "location": "몬테 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_52.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "13:00",
+            "rewardSummary": "몬테 섬의 마음, 몬테섬 참가상, 정령의 선물, 실링",
+            "location": "몬테 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_52.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "19:00",
+            "rewardSummary": "몬테 섬의 마음, 몬테섬 참가상, 정령의 선물, 실링",
+            "location": "몬테 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_52.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "21:00",
+            "rewardSummary": "몬테 섬의 마음, 몬테섬 참가상, 정령의 선물, 실링",
+            "location": "몬테 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_52.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "23:00",
+            "rewardSummary": "몬테 섬의 마음, 몬테섬 참가상, 정령의 선물, 실링",
+            "location": "몬테 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_52.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-01",
+      "category": "모험 섬",
+      "name": "블루홀 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "골드",
+      "rewardText": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-01",
+            "startTime": "11:00",
+            "rewardSummary": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+            "location": "블루홀 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_58.png",
+            "minItemLevel": 960
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "13:00",
+            "rewardSummary": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+            "location": "블루홀 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_58.png",
+            "minItemLevel": 960
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "19:00",
+            "rewardSummary": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+            "location": "블루홀 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_58.png",
+            "minItemLevel": 960
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "21:00",
+            "rewardSummary": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+            "location": "블루홀 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_58.png",
+            "minItemLevel": 960
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "23:00",
+            "rewardSummary": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+            "location": "블루홀 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_58.png",
+            "minItemLevel": 960
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-01",
+      "category": "모험 섬",
+      "name": "하모니 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-01",
+            "startTime": "11:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "13:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "19:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "21:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-01",
+            "startTime": "23:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-02",
+      "category": "모험 섬",
+      "name": "기회의 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-02",
+            "startTime": "11:00",
+            "rewardSummary": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+            "location": "기회의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_70.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "13:00",
+            "rewardSummary": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+            "location": "기회의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_70.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "19:00",
+            "rewardSummary": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+            "location": "기회의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_70.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "21:00",
+            "rewardSummary": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+            "location": "기회의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_70.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "23:00",
+            "rewardSummary": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+            "location": "기회의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_70.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-02",
+      "category": "모험 섬",
+      "name": "볼라르 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "골드",
+      "rewardText": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-02",
+            "startTime": "11:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "13:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "19:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "21:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "23:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-02",
+      "category": "모험 섬",
+      "name": "포르페",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-02",
+            "startTime": "11:00",
+            "rewardSummary": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+            "location": "포르페",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_26.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "13:00",
+            "rewardSummary": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+            "location": "포르페",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_26.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "19:00",
+            "rewardSummary": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+            "location": "포르페",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_26.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "21:00",
+            "rewardSummary": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+            "location": "포르페",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_26.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-02",
+            "startTime": "23:00",
+            "rewardSummary": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+            "location": "포르페",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_26.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-03",
+      "category": "모험 섬",
+      "name": "우거진 갈대의 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-03",
+            "startTime": "11:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "13:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "19:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "21:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "23:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-03",
+      "category": "모험 섬",
+      "name": "죽음의 협곡",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "골드",
+      "rewardText": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-03",
+            "startTime": "11:00",
+            "rewardSummary": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+            "location": "죽음의 협곡",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_35.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "13:00",
+            "rewardSummary": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+            "location": "죽음의 협곡",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_35.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "19:00",
+            "rewardSummary": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+            "location": "죽음의 협곡",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_35.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "21:00",
+            "rewardSummary": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+            "location": "죽음의 협곡",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_35.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "23:00",
+            "rewardSummary": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+            "location": "죽음의 협곡",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_35.png",
+            "minItemLevel": 635
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-03",
+      "category": "모험 섬",
+      "name": "쿵덕쿵 아일랜드",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "쿵덕쿵 아일랜드 섬의 마음, 조사용 토끼발 망치, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-03",
+            "startTime": "11:00",
+            "rewardSummary": "쿵덕쿵 아일랜드 섬의 마음, 조사용 토끼발 망치, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "쿵덕쿵 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_95.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "13:00",
+            "rewardSummary": "쿵덕쿵 아일랜드 섬의 마음, 조사용 토끼발 망치, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "쿵덕쿵 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_95.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "19:00",
+            "rewardSummary": "쿵덕쿵 아일랜드 섬의 마음, 조사용 토끼발 망치, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "쿵덕쿵 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_95.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "21:00",
+            "rewardSummary": "쿵덕쿵 아일랜드 섬의 마음, 조사용 토끼발 망치, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "쿵덕쿵 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_95.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-03",
+            "startTime": "23:00",
+            "rewardSummary": "쿵덕쿵 아일랜드 섬의 마음, 조사용 토끼발 망치, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "쿵덕쿵 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_95.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-04",
+      "category": "모험 섬",
+      "name": "고요한 안식의 섬",
+      "times": [
+        "09:00",
+        "11:00",
+        "13:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-04",
+            "startTime": "09:00",
+            "rewardSummary": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+            "location": "고요한 안식의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_74.png",
+            "minItemLevel": 805
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "11:00",
+            "rewardSummary": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+            "location": "고요한 안식의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_74.png",
+            "minItemLevel": 805
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "13:00",
+            "rewardSummary": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+            "location": "고요한 안식의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_74.png",
+            "minItemLevel": 805
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-04",
+      "category": "모험 섬",
+      "name": "스노우팡 아일랜드",
+      "times": [
+        "09:00",
+        "11:00",
+        "13:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-04",
+            "startTime": "09:00",
+            "rewardSummary": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+            "location": "스노우팡 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_98.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "11:00",
+            "rewardSummary": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+            "location": "스노우팡 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_98.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "13:00",
+            "rewardSummary": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+            "location": "스노우팡 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_98.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-04",
+      "category": "모험 섬",
+      "name": "잔혹한 장난감 성",
+      "times": [
+        "09:00",
+        "11:00",
+        "13:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "잔혹한 장난감 성 섬의 마음, 달콤살벌 마리오네트 변장도구, 미로 정원 두근두근 상자, 실링, 전설 ~ 고급 카드 팩 III",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-04",
+            "startTime": "09:00",
+            "rewardSummary": "잔혹한 장난감 성 섬의 마음, 달콤살벌 마리오네트 변장도구, 미로 정원 두근두근 상자, 실링, 전설 ~ 고급 카드 팩 III",
+            "location": "잔혹한 장난감 성",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_124.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "11:00",
+            "rewardSummary": "잔혹한 장난감 성 섬의 마음, 달콤살벌 마리오네트 변장도구, 미로 정원 두근두근 상자, 실링, 전설 ~ 고급 카드 팩 III",
+            "location": "잔혹한 장난감 성",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_124.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "13:00",
+            "rewardSummary": "잔혹한 장난감 성 섬의 마음, 달콤살벌 마리오네트 변장도구, 미로 정원 두근두근 상자, 실링, 전설 ~ 고급 카드 팩 III",
+            "location": "잔혹한 장난감 성",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_124.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-04",
+      "category": "모험 섬",
+      "name": "라일라이 아일랜드",
+      "times": [
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "라일라이 아일랜드 섬의 마음, 라일라이 아일랜드 축제 기념 상자, 설치물 : 늠름한 신수상, 설치물 : 우아한 신수상, 설치물 : 위엄있는 신수상",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-04",
+            "startTime": "19:00",
+            "rewardSummary": "라일라이 아일랜드 섬의 마음, 라일라이 아일랜드 축제 기념 상자, 설치물 : 늠름한 신수상, 설치물 : 우아한 신수상, 설치물 : 위엄있는 신수상",
+            "location": "라일라이 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_114.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "21:00",
+            "rewardSummary": "라일라이 아일랜드 섬의 마음, 라일라이 아일랜드 축제 기념 상자, 설치물 : 늠름한 신수상, 설치물 : 우아한 신수상, 설치물 : 위엄있는 신수상",
+            "location": "라일라이 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_114.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "23:00",
+            "rewardSummary": "라일라이 아일랜드 섬의 마음, 라일라이 아일랜드 축제 기념 상자, 설치물 : 늠름한 신수상, 설치물 : 우아한 신수상, 설치물 : 위엄있는 신수상",
+            "location": "라일라이 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_114.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-04",
+      "category": "모험 섬",
+      "name": "메데이아",
+      "times": [
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "메데이아 섬의 마음, 메데이아의 선물, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-04",
+            "startTime": "19:00",
+            "rewardSummary": "메데이아 섬의 마음, 메데이아의 선물, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "메데이아",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_41.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "21:00",
+            "rewardSummary": "메데이아 섬의 마음, 메데이아의 선물, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "메데이아",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_41.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "23:00",
+            "rewardSummary": "메데이아 섬의 마음, 메데이아의 선물, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "메데이아",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_41.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-04",
+      "category": "모험 섬",
+      "name": "환영 나비 섬",
+      "times": [
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "환영 나비 섬의 마음, 비밀지도, 모험물 : 환영 나비, 수호, 아드린느 카드",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-04",
+            "startTime": "19:00",
+            "rewardSummary": "환영 나비 섬의 마음, 비밀지도, 모험물 : 환영 나비, 수호, 아드린느 카드",
+            "location": "[대항해] 기에나의 바다",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_81.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "21:00",
+            "rewardSummary": "환영 나비 섬의 마음, 비밀지도, 모험물 : 환영 나비, 수호, 아드린느 카드",
+            "location": "[대항해] 기에나의 바다",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_81.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-04",
+            "startTime": "23:00",
+            "rewardSummary": "환영 나비 섬의 마음, 비밀지도, 모험물 : 환영 나비, 수호, 아드린느 카드",
+            "location": "[대항해] 기에나의 바다",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_81.png",
+            "minItemLevel": 635
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "category": "모험 섬",
+      "name": "메데이아",
+      "times": [
+        "09:00",
+        "11:00",
+        "13:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "메데이아 섬의 마음, 메데이아의 선물, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-05",
+            "startTime": "09:00",
+            "rewardSummary": "메데이아 섬의 마음, 메데이아의 선물, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "메데이아",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_41.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "11:00",
+            "rewardSummary": "메데이아 섬의 마음, 메데이아의 선물, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "메데이아",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_41.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "13:00",
+            "rewardSummary": "메데이아 섬의 마음, 메데이아의 선물, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "메데이아",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_41.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "category": "모험 섬",
+      "name": "죽음의 협곡",
+      "times": [
+        "09:00",
+        "11:00",
+        "13:00"
+      ],
+      "rewardType": "골드",
+      "rewardText": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-05",
+            "startTime": "09:00",
+            "rewardSummary": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+            "location": "죽음의 협곡",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_35.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "11:00",
+            "rewardSummary": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+            "location": "죽음의 협곡",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_35.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "13:00",
+            "rewardSummary": "죽음의 협곡 섬의 마음, 비밀지도, 모험물 : 죽은자의 눈, 수신 아포라스 카드, 실링",
+            "location": "죽음의 협곡",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_35.png",
+            "minItemLevel": 635
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "category": "모험 섬",
+      "name": "포르페",
+      "times": [
+        "09:00",
+        "11:00",
+        "13:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-05",
+            "startTime": "09:00",
+            "rewardSummary": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+            "location": "포르페",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_26.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "11:00",
+            "rewardSummary": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+            "location": "포르페",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_26.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "13:00",
+            "rewardSummary": "포르페 섬의 마음, 비밀지도, 모험물 : 의문의 상자, 탈것 : 길들인 붉은 야생 늑대, 탈것 : 붉은 갈기 늑대",
+            "location": "포르페",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_26.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "category": "모험 섬",
+      "name": "기회의 섬",
+      "times": [
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-05",
+            "startTime": "19:00",
+            "rewardSummary": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+            "location": "기회의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_70.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "21:00",
+            "rewardSummary": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+            "location": "기회의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_70.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "23:00",
+            "rewardSummary": "기회의 섬의 마음, 강태공의 주머니, 해적 주화, 실링, 대양의 주화 상자",
+            "location": "기회의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_70.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "category": "모험 섬",
+      "name": "블루홀 섬",
+      "times": [
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "골드",
+      "rewardText": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-05",
+            "startTime": "19:00",
+            "rewardSummary": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+            "location": "블루홀 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_58.png",
+            "minItemLevel": 960
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "21:00",
+            "rewardSummary": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+            "location": "블루홀 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_58.png",
+            "minItemLevel": 960
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "23:00",
+            "rewardSummary": "블루홀 섬의 마음, 풍요, 실링, 골드, 전설 ~ 고급 카드 팩 III",
+            "location": "블루홀 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_58.png",
+            "minItemLevel": 960
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "category": "모험 섬",
+      "name": "수라도",
+      "times": [
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-05",
+            "startTime": "19:00",
+            "rewardSummary": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "수라도",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_76.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "21:00",
+            "rewardSummary": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "수라도",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_76.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-05",
+            "startTime": "23:00",
+            "rewardSummary": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "수라도",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_76.png",
+            "minItemLevel": 635
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-06",
+      "category": "모험 섬",
+      "name": "고요한 안식의 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-06",
+            "startTime": "11:00",
+            "rewardSummary": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+            "location": "고요한 안식의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_74.png",
+            "minItemLevel": 805
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "13:00",
+            "rewardSummary": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+            "location": "고요한 안식의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_74.png",
+            "minItemLevel": 805
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "19:00",
+            "rewardSummary": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+            "location": "고요한 안식의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_74.png",
+            "minItemLevel": 805
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "21:00",
+            "rewardSummary": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+            "location": "고요한 안식의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_74.png",
+            "minItemLevel": 805
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "23:00",
+            "rewardSummary": "고요한 안식의 섬의 마음, 황혼의 레퀴엠, 크림스네일의 동전, 실링, 대양의 주화 상자",
+            "location": "고요한 안식의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_74.png",
+            "minItemLevel": 805
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-06",
+      "category": "모험 섬",
+      "name": "수라도",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-06",
+            "startTime": "11:00",
+            "rewardSummary": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "수라도",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_76.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "13:00",
+            "rewardSummary": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "수라도",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_76.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "19:00",
+            "rewardSummary": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "수라도",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_76.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "21:00",
+            "rewardSummary": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "수라도",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_76.png",
+            "minItemLevel": 635
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "23:00",
+            "rewardSummary": "수라도 섬의 마음, 선혈의 조각, 실링, 전설 ~ 고급 카드 팩 III, 전설 ~ 고급 카드 팩 IV",
+            "location": "수라도",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_76.png",
+            "minItemLevel": 635
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-06",
+      "category": "모험 섬",
+      "name": "스노우팡 아일랜드",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-06",
+            "startTime": "11:00",
+            "rewardSummary": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+            "location": "스노우팡 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_98.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "13:00",
+            "rewardSummary": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+            "location": "스노우팡 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_98.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "19:00",
+            "rewardSummary": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+            "location": "스노우팡 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_98.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "21:00",
+            "rewardSummary": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+            "location": "스노우팡 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_98.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-06",
+            "startTime": "23:00",
+            "rewardSummary": "스노우팡 아일랜드 섬의 마음, 즐거운 눈싸움 기념 주머니, 실링, 대양의 주화 상자, 해적 주화",
+            "location": "스노우팡 아일랜드",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_98.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-07",
+      "category": "모험 섬",
+      "name": "볼라르 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "골드",
+      "rewardText": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-07",
+            "startTime": "11:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "13:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "19:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "21:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "23:00",
+            "rewardSummary": "볼라르 섬의 마음, 볼라르의 비밀 상자, 실링, 골드, 대양의 주화 상자",
+            "location": "볼라르 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_8.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-07",
+      "category": "모험 섬",
+      "name": "우거진 갈대의 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "카드",
+      "rewardText": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-07",
+            "startTime": "11:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "13:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "19:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "21:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "23:00",
+            "rewardSummary": "우거진 갈대의 섬의 마음, 갈대 숲의 보물 상자, 수호, 실링, 대양의 주화 상자",
+            "location": "우거진 갈대의 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_43.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-07-07",
+      "category": "모험 섬",
+      "name": "하모니 섬",
+      "times": [
+        "11:00",
+        "13:00",
+        "19:00",
+        "21:00",
+        "23:00"
+      ],
+      "rewardType": "주화",
+      "rewardText": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+      "raw": {
+        "schedules": [
+          {
+            "startDate": "2026-07-07",
+            "startTime": "11:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "13:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "19:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "21:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          },
+          {
+            "startDate": "2026-07-07",
+            "startTime": "23:00",
+            "rewardSummary": "하모니 섬의 마음, 천상의 하모니, 투명한 소리의 상자, 향기로운 소리의 상자, 조화로운 소리의 상자",
+            "location": "하모니 섬",
+            "iconUrl": "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
+            "minItemLevel": 250
+          }
+        ]
+      }
+    }
+  ]
+}
