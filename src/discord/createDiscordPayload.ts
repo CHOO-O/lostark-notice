@@ -13,7 +13,6 @@ export type DiscordWebhookPayload = {
 type DiscordEmbed = {
   title: string;
   description?: string;
-  color: number;
   timestamp: string;
   footer: {
     text: string;
@@ -34,18 +33,10 @@ type IslandFieldGroup = {
   sortKey: number;
 };
 
-const FIELD_NAME_LIMIT = 256;
+const SECTION_FIELD_NAME = "모험 섬";
+const EMPTY_FIELD_NAME = "\u200B";
 const FIELD_VALUE_LIMIT = 1024;
 const MAX_EMBED_FIELDS = 25;
-
-const REWARD_COLORS: Record<RewardCategory, number> = {
-  "대양의 주화": 0x3498db,
-  실링: 0x95a5a6,
-  골드: 0xf1c40f,
-  "카드 팩": 0x9b59b6
-};
-
-const REWARD_COLOR_PRIORITY: RewardCategory[] = ["골드", "카드 팩", "대양의 주화", "실링"];
 
 export function createDiscordPayload(briefing: AdventureIslandBriefing): DiscordWebhookPayload {
   const fields = createFields(briefing);
@@ -55,8 +46,7 @@ export function createDiscordPayload(briefing: AdventureIslandBriefing): Discord
     embeds: [
       {
         title: createTitle(briefing),
-        description: fields.length > 0 ? "### 모험 섬" : "조회된 모험 섬 일정이 없습니다.",
-        color: chooseEmbedColor(briefing.islands),
+        description: fields.length > 0 ? undefined : "조회된 모험 섬 일정이 없습니다.",
         timestamp: new Date().toISOString(),
         footer: {
           text: "Lost Ark Open API"
@@ -74,12 +64,9 @@ function createTitle(briefing: AdventureIslandBriefing): string {
 function createFields(briefing: AdventureIslandBriefing): DiscordEmbedField[] {
   return groupIslands(briefing.islands)
     .slice(0, MAX_EMBED_FIELDS)
-    .map((group) => ({
-      name: truncateFieldText(
-        `[${getTimePeriodLabel(group.times)}] ${group.name} | ${group.rewardCategory}`,
-        FIELD_NAME_LIMIT
-      ),
-      value: truncateFieldText(group.times.join(", "), FIELD_VALUE_LIMIT),
+    .map((group, index) => ({
+      name: index === 0 ? SECTION_FIELD_NAME : EMPTY_FIELD_NAME,
+      value: truncateFieldText(formatIslandFieldValue(group), FIELD_VALUE_LIMIT),
       inline: false
     }));
 }
@@ -135,11 +122,15 @@ function getTimePeriodLabel(times: string[]): "오전" | "오후" | "종일" {
   return "오후";
 }
 
-function chooseEmbedColor(islands: AdventureIslandSchedule[]): number {
-  const rewards = new Set(islands.map((island) => island.rewardCategory));
-  const representativeReward = REWARD_COLOR_PRIORITY.find((reward) => rewards.has(reward));
+function formatIslandFieldValue(group: IslandFieldGroup): string {
+  return [
+    `[${getTimePeriodLabel(group.times)}] ${group.name} | ${formatReward(group.rewardCategory)}`,
+    group.times.join(", ")
+  ].join("\n");
+}
 
-  return representativeReward ? REWARD_COLORS[representativeReward] : 0x5865f2;
+function formatReward(rewardCategory: RewardCategory): string {
+  return rewardCategory === "골드" ? "**골드**" : rewardCategory;
 }
 
 function compareTimeText(left: string, right: string): number {
