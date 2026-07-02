@@ -1,10 +1,13 @@
 import { buildAdventureIslandBriefingFromSchedules } from "../briefing/buildAdventureIslandBriefing.js";
 import { CalendarDataNotFoundError, loadNormalizedCalendarData } from "../calendar/loadCalendarData.js";
-import { toAdventureIslandSchedulesFromNormalized } from "../calendar/normalizeCalendar.js";
+import type { NormalizedCalendarCategory } from "../calendar/calendarTypes.js";
+import { toSchedulesFromNormalized } from "../calendar/normalizeCalendar.js";
 import { loadDailyNoticeConfig } from "../config.js";
 import { createDiscordPayload, type DiscordWebhookPayload } from "../discord/createDiscordPayload.js";
 import { sendDiscordPayloadToWebhooks } from "../discord/webhookSender.js";
 import { getLostArkBusinessDate } from "../time.js";
+
+const enabledCategories: readonly NormalizedCalendarCategory[] = ["모험 섬"];
 
 async function main(): Promise<void> {
   const config = loadDailyNoticeConfig();
@@ -15,7 +18,11 @@ async function main(): Promise<void> {
 
   try {
     const normalizedCalendarData = await loadNormalizedCalendarData();
-    const schedules = toAdventureIslandSchedulesFromNormalized(normalizedCalendarData, targetDate);
+    const schedules = toSchedulesFromNormalized(
+      normalizedCalendarData,
+      targetDate,
+      enabledCategories
+    );
     const briefing = buildAdventureIslandBriefingFromSchedules(schedules, { now, targetDate });
     const payload = createDiscordPayload(briefing);
     const results = await sendDiscordPayloadToWebhooks(config.webhooks, payload, {

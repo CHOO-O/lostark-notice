@@ -1,8 +1,9 @@
-export const REWARD_NAMES = ["실링", "카드", "주화", "골드", "기타"] as const;
+export const REWARD_NAMES = ["골드", "카드", "주화", "실링", "기타"] as const;
 
 export type RewardCategory = (typeof REWARD_NAMES)[number];
 
 export type AdventureIslandSchedule = {
+  category?: string;
   name: string;
   startDate: string;
   startTime: string;

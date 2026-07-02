@@ -6,9 +6,9 @@ export type RewardClassification = {
 };
 
 const CATEGORY_RULES: Array<{ category: RewardCategory; pattern: RegExp }> = [
-  { category: "골드", pattern: /골드|gold/i },
-  { category: "카드", pattern: /카드|card/i },
-  { category: "주화", pattern: /대양|주화|해적|항해|coin/i },
+  { category: "골드", pattern: /귀속\s*골드|골드|gold/i },
+  { category: "카드", pattern: /카드\s*팩|card\s*pack/i },
+  { category: "주화", pattern: /대양의?\s*주화\s*상자|해적\s*주화|주화|coin/i },
   { category: "실링", pattern: /실링|shilling|silver/i }
 ];
 

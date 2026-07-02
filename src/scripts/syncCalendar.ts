@@ -17,7 +17,7 @@ async function main(): Promise<void> {
     timeoutMs: config.requestTimeoutMs
   });
   const normalizedCalendarData = normalizeCalendar(rawCalendarResponse, now);
-  const paths = await saveCalendarData(rawCalendarResponse, normalizedCalendarData, syncDate);
+  const paths = await saveCalendarData(rawCalendarResponse, normalizedCalendarData);
 
   console.log(`[calendar-sync] normalized items: ${normalizedCalendarData.items.length}`);
   console.log(`[calendar-sync] saved: ${paths.rawLatestPath}`);

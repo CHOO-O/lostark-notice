@@ -20,6 +20,7 @@ type DiscordEmbed = {
 };
 
 type IslandFieldGroup = {
+  category: string;
   name: string;
   rewardCategory: RewardCategory;
   times: string[];
@@ -27,6 +28,8 @@ type IslandFieldGroup = {
 };
 
 const EMBED_DESCRIPTION_LIMIT = 4096;
+const DEFAULT_CATEGORY = "모험 섬";
+const CATEGORY_ORDER = ["모험 섬", "필드 보스", "카오스게이트"];
 
 export function createDiscordPayload(briefing: AdventureIslandBriefing): DiscordWebhookPayload {
   return {
@@ -49,14 +52,19 @@ function createTitle(briefing: AdventureIslandBriefing): string {
 }
 
 function createDescription(briefing: AdventureIslandBriefing): string {
-  const lines = ["### 모험 섬"];
-
   if (briefing.islands.length === 0) {
-    lines.push("조회된 모험 섬 일정이 없습니다.");
-  } else {
-    lines.push(...groupIslands(briefing.islands).map(formatIslandLine));
+    return ["### 모험 섬", "조회된 모험 섬 일정이 없습니다."].join("\n");
   }
 
+  const categoryGroups = groupSchedulesByCategory(briefing.islands);
+  const lines = sortCategoryNames(Array.from(categoryGroups.keys())).flatMap((category) => {
+    const schedules = categoryGroups.get(category) ?? [];
+    return [`### ${category}`, ...groupIslands(schedules).map(formatIslandLine), ""];
+  });
+
+  if (lines[lines.length - 1] === "") {
+    lines.pop();
+  }
   return lines.join("\n");
 }
 
@@ -68,7 +76,8 @@ function groupIslands(islands: AdventureIslandSchedule[]): IslandFieldGroup[] {
   const groups = new Map<string, IslandFieldGroup>();
 
   for (const island of islands) {
-    const key = `${island.name}|${island.rewardCategory}`;
+    const category = island.category ?? DEFAULT_CATEGORY;
+    const key = `${category}|${island.name}|${island.rewardCategory}`;
     const existing = groups.get(key);
 
     if (existing) {
@@ -78,6 +87,7 @@ function groupIslands(islands: AdventureIslandSchedule[]): IslandFieldGroup[] {
     }
 
     groups.set(key, {
+      category,
       name: island.name,
       rewardCategory: island.rewardCategory,
       times: [island.startTime],
@@ -96,6 +106,38 @@ function groupIslands(islands: AdventureIslandSchedule[]): IslandFieldGroup[] {
       }
       return left.name.localeCompare(right.name, "ko-KR");
     });
+}
+
+function groupSchedulesByCategory(
+  schedules: AdventureIslandSchedule[]
+): Map<string, AdventureIslandSchedule[]> {
+  const groups = new Map<string, AdventureIslandSchedule[]>();
+
+  for (const schedule of schedules) {
+    const category = schedule.category ?? DEFAULT_CATEGORY;
+    const existing = groups.get(category) ?? [];
+    existing.push(schedule);
+    groups.set(category, existing);
+  }
+
+  return groups;
+}
+
+function sortCategoryNames(categories: string[]): string[] {
+  return categories.sort((left, right) => {
+    const leftIndex = CATEGORY_ORDER.indexOf(left);
+    const rightIndex = CATEGORY_ORDER.indexOf(right);
+
+    if (leftIndex !== -1 || rightIndex !== -1) {
+      return normalizeCategorySortIndex(leftIndex) - normalizeCategorySortIndex(rightIndex);
+    }
+
+    return left.localeCompare(right, "ko-KR");
+  });
+}
+
+function normalizeCategorySortIndex(index: number): number {
+  return index === -1 ? Number.MAX_SAFE_INTEGER : index;
 }
 
 function getTimePeriodLabel(times: string[]): "오전" | "오후" | "종일" {

@@ -1,7 +1,11 @@
 import type { RewardCategory } from "../briefing/briefingTypes.js";
 
+export const NORMALIZED_CALENDAR_CATEGORIES = ["모험 섬", "필드 보스", "카오스게이트"] as const;
+
+export type NormalizedCalendarCategory = (typeof NORMALIZED_CALENDAR_CATEGORIES)[number];
+
 export type NormalizedCalendarData = {
-  schemaVersion: 1;
+  schemaVersion: 2;
   syncedAt: string;
   source: "Lost Ark Open API /gamecontents/calendar";
   resetHourKst: 6;
@@ -10,21 +14,16 @@ export type NormalizedCalendarData = {
 
 export type NormalizedCalendarItem = {
   date: string;
-  category: "모험 섬";
+  category: NormalizedCalendarCategory;
   name: string;
   times: string[];
+  location: string | null;
+  minItemLevel: number | null;
   rewardType: RewardCategory;
   rewardText: string | null;
-  raw: {
-    schedules: NormalizedCalendarRawSchedule[];
-  };
-};
-
-export type NormalizedCalendarRawSchedule = {
-  startDate: string;
-  startTime: string;
-  rewardSummary: string | null;
-  location: string | null;
   iconUrl: string | null;
-  minItemLevel: number | null;
+  rawRef: {
+    categoryName: string | null;
+    contentsName: string | null;
+  };
 };
