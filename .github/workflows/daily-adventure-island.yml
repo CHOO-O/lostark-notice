@@ -1,0 +1,39 @@
+name: Daily Adventure Island Notice
+
+on:
+  schedule:
+    # 10:00 KST is 01:00 UTC.
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  send-notice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Send Discord notice
+        run: npm start
+        env:
+          LOSTARK_API_KEY: ${{ secrets.LOSTARK_API_KEY }}
+          DISCORD_WEBHOOK_TEST: ${{ secrets.DISCORD_WEBHOOK_TEST }}
+          DISCORD_WEBHOOK_MAIN: ${{ secrets.DISCORD_WEBHOOK_MAIN }}
+          DISCORD_WEBHOOK_EXTRA: ${{ secrets.DISCORD_WEBHOOK_EXTRA }}
