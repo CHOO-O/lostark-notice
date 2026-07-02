@@ -115,7 +115,7 @@ function formatIslandLine(group: IslandFieldGroup): string {
   const timeLabel = getTimePeriodLabel(group.times);
 
   if (group.rewardCategory === "골드") {
-    return `\`\`\`fix\n[${timeLabel}] ***${group.name}*** | ***골드***\n\`\`\``;
+    return `\`\`\`fix\n[${timeLabel}] ${group.name} | 골드\n\`\`\``;
   }
 
   return `\`\`\`[${timeLabel}] ${group.name} | ${group.rewardCategory}\`\`\``;

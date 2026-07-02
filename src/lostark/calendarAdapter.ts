@@ -1,6 +1,6 @@
 import type { AdventureIslandSchedule } from "../briefing/briefingTypes.js";
 import { classifyReward } from "../briefing/rewardClassifier.js";
-import { parseCalendarDateTime } from "../time.js";
+import { type KstDateTimeParts, parseCalendarDateTime } from "../time.js";
 
 type CalendarRecord = Record<string, unknown>;
 
@@ -69,13 +69,6 @@ function isAdventureIsland(item: CalendarRecord): boolean {
 
 function createSchedules(item: CalendarRecord, targetDate: string): AdventureIslandSchedule[] {
   const rewardSource = getFirstExistingValue(item, REWARD_KEYS);
-  const rewardTimeMap = buildRewardTimeMap(rewardSource);
-
-  if (rewardTimeMap.size > 0) {
-    return Array.from(rewardTimeMap.entries()).flatMap(([rawStartTime, rewardItems]) =>
-      createScheduleFromTime(item, targetDate, rawStartTime, rewardItems)
-    );
-  }
 
   return extractRawStartTimes(item).flatMap((rawStartTime) =>
     createScheduleFromTime(item, targetDate, rawStartTime, rewardSource ?? item)
@@ -93,7 +86,8 @@ function createScheduleFromTime(
     return [];
   }
 
-  const reward = classifyReward(rewardSource);
+  const datedRewardSource = selectRewardSourceForStartTime(rewardSource, parsedStartTime);
+  const reward = classifyReward(datedRewardSource === undefined ? rewardSource : datedRewardSource);
 
   return [
     {
@@ -110,31 +104,84 @@ function createScheduleFromTime(
   ];
 }
 
-function buildRewardTimeMap(rewardSource: unknown): Map<unknown, unknown[]> {
-  const result = new Map<unknown, unknown[]>();
-  const rewardItems = Array.isArray(rewardSource) ? rewardSource : [];
-
-  for (const rewardItem of rewardItems) {
-    if (!isRecord(rewardItem)) {
-      continue;
-    }
-
-    for (const rawStartTime of extractRawStartTimes(rewardItem)) {
-      const existing = result.get(rawStartTime) ?? [];
-      existing.push(rewardItem);
-      result.set(rawStartTime, existing);
-    }
-  }
-
-  return result;
-}
-
 function extractRawStartTimes(item: CalendarRecord): unknown[] {
   const value = getFirstExistingValue(item, START_TIME_KEYS);
   if (Array.isArray(value)) {
     return value;
   }
   return value == null ? [] : [value];
+}
+
+function selectRewardSourceForStartTime(
+  rewardSource: unknown,
+  parsedStartTime: KstDateTimeParts
+): unknown[] | undefined {
+  const rewardItems = Array.isArray(rewardSource) ? rewardSource.filter(isRecord) : [];
+  if (rewardItems.length === 0) {
+    return undefined;
+  }
+
+  const rewardsWithTimes = rewardItems.map((rewardItem) => ({
+    rewardItem,
+    dateTimes: extractDateTimesDeep(rewardItem)
+  }));
+  const hasAnyDateTime = rewardsWithTimes.some(({ dateTimes }) => dateTimes.length > 0);
+
+  if (!hasAnyDateTime) {
+    return undefined;
+  }
+
+  const exactMatches = rewardsWithTimes
+    .filter(({ dateTimes }) =>
+      dateTimes.some(
+        (dateTime) =>
+          dateTime.date === parsedStartTime.date && dateTime.time === parsedStartTime.time
+      )
+    )
+    .map(({ rewardItem }) => rewardItem);
+
+  if (exactMatches.length > 0) {
+    return exactMatches;
+  }
+
+  const dateMatches = rewardsWithTimes
+    .filter(({ dateTimes }) =>
+      dateTimes.some((dateTime) => dateTime.date === parsedStartTime.date)
+    )
+    .map(({ rewardItem }) => rewardItem);
+
+  return dateMatches;
+}
+
+function extractDateTimesDeep(value: unknown, depth = 0): KstDateTimeParts[] {
+  if (depth > 4 || value == null) {
+    return [];
+  }
+
+  if (typeof value === "string") {
+    const parsed = parseCalendarDateTime(value);
+    return parsed ? [parsed] : [];
+  }
+
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => extractDateTimesDeep(item, depth + 1));
+  }
+
+  if (!isRecord(value)) {
+    return [];
+  }
+
+  return Object.entries(value).flatMap(([key, nestedValue]) => {
+    if (!isDateTimeKey(key) && !Array.isArray(nestedValue) && !isRecord(nestedValue)) {
+      return [];
+    }
+
+    return extractDateTimesDeep(nestedValue, depth + 1);
+  });
+}
+
+function isDateTimeKey(key: string): boolean {
+  return /(?:date|time|schedule|period|start|end)/i.test(key);
 }
 
 function deduplicateSchedules(schedules: AdventureIslandSchedule[]): AdventureIslandSchedule[] {
