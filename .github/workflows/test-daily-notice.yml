@@ -1,0 +1,41 @@
+name: test-daily-notice
+
+on:
+  schedule:
+    # Temporary one-off check: 12:30 KST is 03:30 UTC.
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  send-test-notice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Send test daily Discord notice
+        run: npm run notify:daily
+        env:
+          DISCORD_WEBHOOK_TEST: ${{ secrets.DISCORD_WEBHOOK_TEST }}
+          DISCORD_WEBHOOK_MAIN: ${{ secrets.DISCORD_WEBHOOK_MAIN }}
+          DISCORD_WEBHOOK_CAFE: ${{ secrets.DISCORD_WEBHOOK_CAFE }}
+          DISCORD_WEBHOOK_EXTRA: ${{ secrets.DISCORD_WEBHOOK_EXTRA }}

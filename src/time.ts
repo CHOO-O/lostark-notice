@@ -17,10 +17,24 @@ export type KstDateTimeParts = {
 
 export function getLostArkBusinessDate(now = new Date()): string {
   const parts = getKstDateTimeParts(now);
-  const year = Number.parseInt(parts.year, 10);
-  const month = Number.parseInt(parts.month, 10);
-  const day = Number.parseInt(parts.day, 10);
-  const hour = Number.parseInt(parts.hour, 10);
+  return getLostArkBusinessDateForKstDateTime({
+    date: `${parts.year}-${parts.month}-${parts.day}`,
+    time: `${parts.hour}:${parts.minute}`
+  });
+}
+
+export function getLostArkBusinessDateForKstDateTime(
+  parts: Pick<KstDateTimeParts, "date" | "time">
+): string {
+  const match = parts.date.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) {
+    return parts.date;
+  }
+
+  const year = Number.parseInt(match[1]!, 10);
+  const month = Number.parseInt(match[2]!, 10);
+  const day = Number.parseInt(match[3]!, 10);
+  const hour = Number.parseInt(parts.time.slice(0, 2), 10);
 
   const businessDate = new Date(Date.UTC(year, month - 1, day));
   if (hour < LOSTARK_DAILY_RESET_HOUR) {

@@ -7,6 +7,7 @@ import {
 } from "./calendarTypes.js";
 import {
   formatKstDateTime,
+  getLostArkBusinessDateForKstDateTime,
   type KstDateTimeParts,
   LOSTARK_DAILY_RESET_HOUR,
   parseCalendarDateTime
@@ -78,20 +79,29 @@ export function toSchedulesFromNormalized(
   const enabledCategorySet = new Set(enabledCategories);
 
   return calendarData.items
-    .filter((item) => item.date === targetDate && enabledCategorySet.has(item.category))
+    .filter((item) => enabledCategorySet.has(item.category))
     .flatMap((item) =>
-      item.times.map((time) => ({
-        category: item.category,
-        name: item.name,
-        startDate: item.date,
-        startTime: time,
-        sortKey: createSortKey(item.date, time),
-        rewardCategory: item.rewardType,
-        rewardSummary: item.rewardText,
-        location: item.location,
-        iconUrl: item.iconUrl,
-        minItemLevel: item.minItemLevel
-      }))
+      item.times.flatMap((time) => {
+        const businessDate = getScheduleBusinessDate(item.date, time);
+        if (businessDate !== targetDate) {
+          return [];
+        }
+
+        return [
+          {
+            category: item.category,
+            name: item.name,
+            startDate: item.date,
+            startTime: time,
+            sortKey: createSortKey(item.date, time),
+            rewardCategory: item.rewardType,
+            rewardSummary: item.rewardText,
+            location: item.location,
+            iconUrl: item.iconUrl,
+            minItemLevel: item.minItemLevel
+          }
+        ];
+      })
     )
     .sort(compareSchedules);
 }
@@ -310,6 +320,13 @@ function setsOverlap(left: Set<string>, right: Set<string>): boolean {
 
 function toDateTimeKey(parts: KstDateTimeParts): string {
   return `${parts.date}T${parts.time}:00`;
+}
+
+function getScheduleBusinessDate(date: string, time: string): string {
+  return getLostArkBusinessDateForKstDateTime({
+    date,
+    time
+  });
 }
 
 function formatKstIsoOffset(now: Date): string {
