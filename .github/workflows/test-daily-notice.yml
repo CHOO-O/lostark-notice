@@ -3,7 +3,7 @@ name: test-daily-notice
 on:
   schedule:
     # Temporary one-off checks: 13:00/13:10/13:20/13:30 KST are 04:00/04:10/04:20/04:30 UTC.
-    - cron: "0,10,20,30 4 * * *"
+    - cron: "0,10,20,30 6 * * *"
   workflow_dispatch:
 
 permissions:
