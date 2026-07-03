@@ -2,8 +2,8 @@ name: daily-notice
 
 on:
   schedule:
-    # 10:30 KST is 01:30 UTC. Wednesday is excluded and handled by workflow_run.
-    - cron: "30 1 * * 0,1,2,4,5,6"
+    # 10:33 KST is 01:33 UTC. Wednesday is excluded and handled by workflow_run.
+    - cron: "33 1 * * 0,1,2,4,5,6"
   workflow_dispatch:
   workflow_run:
     workflows: ["get-weekly-calendar"]
